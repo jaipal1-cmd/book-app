@@ -14,7 +14,9 @@ mongoose.set("strictQuery", false)
 const app = express();
 
 app.use(express.json())
-
+app.get("/",(req,res)=>{
+	res.send("working");
+})
 app.use("/api/v1/auth", AuthRouter)
 app.use("/api/v1/book", BookRouter)
 
