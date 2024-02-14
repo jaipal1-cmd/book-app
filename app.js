@@ -5,9 +5,9 @@ import BookRouter from "./routes/book.js";
 
 const mongoUri = "mongodb://localhost:27017"
 
-mongoose.connect(mongoUri, {
-    dbName: "bookApp"
-})
+// mongoose.connect(mongoUri, {
+//     dbName: "bookApp"
+// })
 
 mongoose.set("strictQuery", false)
 
