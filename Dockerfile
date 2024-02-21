@@ -10,4 +10,4 @@ RUN npm i
 
 CMD ["node","app.js"]
 
-EXPOSE <port> [3000]
+EXPOSE 3000
