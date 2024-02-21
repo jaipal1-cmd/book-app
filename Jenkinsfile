@@ -3,13 +3,12 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        build(job: 'book-app', waitForStart: true)
+        echo(job: 'book-app', waitForStart: true)
       }
     }
-
     stage('deploy') {
       steps {
-        readTrusted '/Dockerfile'
+        echo(readTrusted '/Dockerfile')
       }
     }
 
