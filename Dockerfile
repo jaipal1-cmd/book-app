@@ -9,3 +9,5 @@ COPY ./ ./
 RUN npm i
 
 CMD ["node","app.js"]
+
+EXPOSE 3000
