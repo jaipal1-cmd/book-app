@@ -9,7 +9,7 @@ pipeline {
 
     stage('depoy') {
       steps {
-        readTrusted '/dockerfile'
+        readTrusted '/Dockerfile'
       }
     }
 
