@@ -8,7 +8,7 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        readTrusted 'Dockerfile'
+        readTrusted  Dockerfile 
       }
     }
 
