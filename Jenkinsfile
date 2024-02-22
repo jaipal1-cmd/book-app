@@ -9,10 +9,10 @@ pipeline {
     }    
   }   
 }      
-  stage('deploy') {
-       steps {
-         readTrusted 'dockerfile'
-         script {
+    stage('deploy') {
+      steps {
+        readTrusted ('dockerfile')
+        script {
            sh 'docker run -d --name book-app -p 80:3000'
          }
        }
