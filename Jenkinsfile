@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    sh "docker build -t jaipal1-cmd/book-app:main ."
+                    sudo sh "docker build -t jaipal1-cmd/book-app:main ."
                 }
             }
         }
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     readTrusted('dockerfile')
-                    sh 'docker run -d --name book-app -p 80:3000 jaipal1-cmd/book-app:main'
+                    sudo sh 'docker run -d --name book-app -p 80:3000 jaipal1-cmd/book-app:main'
                 }
             }
         }
