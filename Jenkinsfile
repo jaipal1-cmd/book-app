@@ -5,8 +5,7 @@ pipeline {
       steps {
         script {
         build(job: 'book-app', waitForStart: true)
-        def dockerImage = docker.build("jaipal1-cmd/book-app:main")
-            dockerImage.push('main')
+        
       }
     }    
   }   
