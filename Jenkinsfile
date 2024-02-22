@@ -9,7 +9,7 @@ pipeline {
     }    
   }   
 }      
-       stage('deploy') {
+    stage('deploy') {
        steps {
          readTrusted 'dockerfile'
          script {
