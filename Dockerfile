@@ -8,8 +8,6 @@ COPY ./ ./
 
 RUN npm i
 
-CMD ["npm", "start"]
+EXPOSE 3000
 
 CMD ["node","app.js"]
-
-EXPOSE 3000
