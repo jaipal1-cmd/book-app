@@ -11,7 +11,6 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    readTrusted('dockerfile')
                     sudo sh 'docker run -d --name book-app -p 80:3000 jaipal1-cmd/book-app:main'
                 }
             }
