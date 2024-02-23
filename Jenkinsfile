@@ -1,69 +1,18 @@
 pipeline {
     agent any
-
-    environment {
-        NODEJS_VERSION = '18' // Set the Node.js version you want to use
-        DOCKER_IMAGE = 'jaipal1-cmd/book-app:main' // Set your Docker image name and tag
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
+        stage('build') {
             steps {
                 script {
-                    // Use Node.js Docker image to build
-                    docker.image("node:${18}")
-                        .inside('-v $PWD:/app') {
-                            sh 'cd /app && npm install'
-                        }
+                    sudo sh "docker build -t jaipal1-cmd/book-app:main ."
                 }
             }
         }
-
-        stage('Test') {
+        stage('deploy') {
             steps {
                 script {
-                    // Run your tests here
-                    docker.image("node:${18}")
-                        .inside('-v $PWD:/app') {
-                            sh 'cd /app && npm test'
-                        }
+                    sudo sh 'docker run -d --name book-app -p 80:3000 jaipal1-cmd/book-app:main'
                 }
             }
         }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build the Docker image
-                    docker.build("${DOCKER_IMAGE}", '.')
-                }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deploy the Docker container
-                    docker.withRegistry('https://github.com/jaipal1-cmd/book-app/main', 'docker-credentials') {
-                        sh "docker run -d --name book-app -p 80:3000 ${DOCKER_IMAGE}"
-                    }
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline succeeded! You can add more post-build actions here.'
-        }
-        failure {
-            echo 'Pipeline failed! You can add more post-build actions here.'
-        }
-    }
-}
+    }+
