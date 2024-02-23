@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Use Node.js Docker image to build
-                    docker.image("node:${NODEJS_VERSION}")
+                    docker.image("node:${18}")
                         .inside('-v $PWD:/app') {
                             sh 'cd /app && npm install'
                         }
