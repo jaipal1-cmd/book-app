@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODEJS_VERSION = '14' // Set the Node.js version you want to use
+        NODEJS_VERSION = '18' // Set the Node.js version you want to use
         DOCKER_IMAGE = 'jaipal1-cmd/book-app:main' // Set your Docker image name and tag
     }
 
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Run your tests here
-                    docker.image("node:${NODEJS_VERSION}")
+                    docker.image("node:${18}")
                         .inside('-v $PWD:/app') {
                             sh 'cd /app && npm test'
                         }
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     // Deploy the Docker container
-                    docker.withRegistry('https://registry.example.com', 'docker-credentials') {
+                    docker.withRegistry('https://github.com/jaipal1-cmd/book-app/main', 'docker-credentials') {
                         sh "docker run -d --name book-app -p 80:3000 ${DOCKER_IMAGE}"
                     }
                 }
